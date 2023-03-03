@@ -1,17 +1,87 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../constext/AuthProvider';
 
 const Signup = () => {
 
     const {register, formState: { errors }, handleSubmit} = useForm()
      
+    const {createUser,updateUserProfile, setLoding}=useContext(AuthContext)
+       
+    const [userEmail, setUserEmail] = useState('')
+        //  const [token]=useToken(userEmail)
+    
+         const navigate = useNavigate()
+
+      
+   
+         
+        
+
+        
+    const hanlarSinup = (data)=>{
+           
+        createUser(data.email, data.password)
+        .then((result)=>{
+             const user = result.user;
+             toast.success('Create User Succussfully')
+         
+             const userProfile = {
+              displayName:data.name
+
+              
+             }
+             updateUserProfile(userProfile)
+
+             console.log(user)
+
+             
+             
+       // SignUp page Create Jwt Token
+
+               setUserEmail(data.email)
+        })
+        .catch((error)=>{
+          console.error(error)
+        })
+             
+      const userInfo ={
+          name:data.name,
+          email:data.email,
+          role : data.select,
+          
+        }
+        
+         fetch('http://localhost:5000/users',{
+
+          method: 'POST',
+          headers:{
+              'content-type':'application/json'
+          },
+        body:JSON.stringify(userInfo)
+         })
+         .then(res => res.json() )
+         .then(data => {
+             
+            if(data.acknowledged){
+
+                toast.success('user Info database Save')
+
+            }
+             
+         })
+      
+      }
+
+
     return (
         <div className='h-[650px] flex justify-center items-center'>
         <div className='w-96 border border-indigo-600  p-7'>
               <h2 className='text-2xl text-center'> Sign up  page</h2>
 
-       <form >
+       <form onSubmit={handleSubmit(hanlarSinup)}  >
                        
               <div className="form-control w-full max-w-xs">
               <label className="label">

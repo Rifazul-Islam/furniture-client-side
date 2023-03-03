@@ -1,12 +1,90 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
-import { FcGoogle, IconName } from "react-icons/fc";
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { FcGoogle } from "react-icons/fc";
+import { toast } from 'react-hot-toast';
+import { AuthContext } from '../../constext/AuthProvider';
 const Login = () => {
 
     const {register, formState: { errors }, handleSubmit} = useForm()
 
     const [loginUser, setLoginUser]=useState('')
+
+//    const [token]=useToken(loginUser)
+    const location = useLocation()
+    const navigate = useNavigate()
+
+    const from = location.state?.from?.pathname || '/'
+        
+
+      navigate(from, {replace:true});
+
+  const {userLogin ,userGoogleLogin} = useContext(AuthContext)
+  const handlarLogin = (data)=>{
+
+    userLogin(data.email, data.password)
+    .then((result)=> {
+       const user = result.user;
+       console.log(user)
+       toast.success('User Login Succussfully')
+
+       // Loin page Create Jwt Token
+
+       setLoginUser(data.email)
+      
+    })
+     .catch((error)=>{
+        console.error(error)
+     })
+  }
+
+
+  const handlarGoogleLoing = () =>{
+
+    userGoogleLogin()
+    .then(result => {
+      const user = result.user;
+      console.log(user)
+        // Google page Create Jwt Token
+      setLoginUser(user?.email)
+      if (user) {
+        const userInfo = {
+            name: user?.displayName,
+            email: user?.email,
+            role: 'buyer'
+        };
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(userInfo)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    // setCreateUserEmail(user?.email);
+                    toast.success('Account Create successfull with save user')
+                    navigate(from, {replace:true});
+                
+                  } else {
+                    // setCreateUserEmail(user?.email);
+                    toast.error(data.message)
+                    navigate(from, {replace:true});
+                }
+            })
+            .catch(err => {
+                console.error(err.message);
+            })
+
+    }
+
+    })
+    .catch(error =>{
+          console.error(error)
+    })
+  }
+  
       
     
 
@@ -16,7 +94,7 @@ const Login = () => {
          <div className='w-96 border-2  p-10'>
         <h2 className='text-2xl text-center'> Login Page </h2>
 
- <form >
+ <form  onSubmit={handleSubmit(handlarLogin)}>
 
 <div className="form-control w-full max-w-xs">
 <label className="label">
@@ -52,7 +130,7 @@ className="input input-bordered w-full max-w-xs" />
 </form>  
 
   <p className='mt-3 mb-4'> New go to  <Link to='/signup' className='text-green-500' > Create New Accout</Link> </p>
- <button   className='btn btn-outline btn-primary w-full'><FcGoogle className='mr-3 text-2xl'></FcGoogle>   CONTINUE WITH GOOGLE</button>
+ <button onClick={handlarGoogleLoing}   className='btn btn-outline btn-primary w-full'><FcGoogle className='mr-3 text-2xl'></FcGoogle>   CONTINUE WITH GOOGLE</button>
  </div>   
 </div>
     );
