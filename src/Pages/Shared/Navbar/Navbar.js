@@ -1,7 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../constext/AuthProvider';
+
 
 const Navbar = () => {
+
+  const {user,userLogout} = useContext(AuthContext)
+     
+  const handlarUserLogout=()=>{
+      
+    userLogout()
+    .then(()=>{
+
+    }) 
+    .catch((error)=>{
+
+      console.error(error)
+    })
+  }
+
+
     return (
         <div className="navbar bg-base-200 flex justify-between">
         <div className="navbar-start">
@@ -12,16 +30,17 @@ const Navbar = () => {
             <ul tabIndex={1} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
            
             <li><Link to="/">Home</Link></li>
-            <li><Link >Blog</Link></li>
+            <li><Link to='/blog' >Blog</Link></li>
            
           
-{/*            
+            {
+              user?.uid? <>
                 <li><Link to='/deshboard'>Deshboard</Link></li>
                 
-                   <li> <Link to='/#'> <button>Sign out</button> </Link> </li>             */}
-             
-                    <li><Link to='/login'>Login</Link></li>
-         
+                   <li> <Link to='/login'> <button onClick={handlarUserLogout}>Sign out</button> </Link> </li>            
+               </>
+                   :<li><Link to="/login">Login</Link></li>
+          }
            
             </ul>
           </div>
@@ -33,12 +52,11 @@ const Navbar = () => {
             
           <li><Link to="/">Home</Link></li>
 
-         {/* {user?.uid? <> <li> <Link to='/deshboard'> Deshboard </Link> </li>
-         <button onClick={handlarUserLogout}>Sign out</button> */}
-     <li><Link to='/login' >Login</Link></li>
-     <li><Link>Contact us</Link></li>
+        {user?.uid? <> <li> <Link to='/deshboard'> Deshboard </Link> </li>
+         <button onClick={handlarUserLogout}>Sign out</button>
+        </>  : <li><Link to="/login">Login</Link></li>}
 
-         <li><Link>Blog</Link></li>
+         <li><Link to='/blog'>Blog</Link></li>
           
           </ul>
 
