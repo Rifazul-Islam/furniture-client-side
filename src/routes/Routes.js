@@ -1,7 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
+import DeshboardLayout from "../DeshboardLayout/DeshboardLayout";
 import Main from "../Layout/Main";
 import Blog from "../Pages/Blog/Blog";
 import Category from "../Pages/Category/Category";
+import AddProduct from "../Pages/Deshboard/MyProduct/AddProduct";
+import MyProduct from "../Pages/Deshboard/MyProduct/MyProduct";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Signup from "../Pages/Signup/Signup";
@@ -19,6 +22,13 @@ import Signup from "../Pages/Signup/Signup";
 
     }
 
+     ]},
+
+
+     {path:'/deshboard', element: <DeshboardLayout></DeshboardLayout>, children:[
+
+      {path:'/deshboard/addProduct', element:<AddProduct></AddProduct> },
+      {path:'/deshboard/myProduct', element:<MyProduct></MyProduct> },
      ]}
      
 ])
