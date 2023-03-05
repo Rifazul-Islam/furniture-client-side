@@ -3,16 +3,21 @@ import DeshboardLayout from "../DeshboardLayout/DeshboardLayout";
 import Main from "../Layout/Main";
 import Blog from "../Pages/Blog/Blog";
 import Category from "../Pages/Category/Category";
+import AllBuyer from "../Pages/Deshboard/AllBuyer/AllBuyer";
+import AllSeller from "../Pages/Deshboard/AllSeller/AllSeller";
 import Myorder from "../Pages/Deshboard/Myorder/Myorder";
 import AddProduct from "../Pages/Deshboard/MyProduct/AddProduct";
 import MyProduct from "../Pages/Deshboard/MyProduct/MyProduct";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
+import ErrorCheck from "../Pages/Shared/ErrorCheck/ErrorCheck";
 import Signup from "../Pages/Signup/Signup";
 
  export const router = createBrowserRouter([
      
-     {path:'/', element:<Main></Main>, children:[
+     {path:'/', element:<Main></Main>,
+     errorElement:<ErrorCheck></ErrorCheck>,
+     children:[
  
       {path:'/', element:<Home></Home>},
       {path:'/login', element:<Login></Login>},
@@ -31,6 +36,8 @@ import Signup from "../Pages/Signup/Signup";
       {path:'/deshboard/addProduct', element:<AddProduct></AddProduct> },
       {path:'/deshboard/myProduct', element:<MyProduct></MyProduct> },
       {path:'/deshboard/myorder', element:<Myorder></Myorder> },
+      {path:'/deshboard/allBuyer', element:<AllBuyer></AllBuyer>},
+      {path:'/deshboard/allSeller', element:<AllSeller></AllSeller>},
      ]}
      
 ])
