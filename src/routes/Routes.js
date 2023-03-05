@@ -3,6 +3,7 @@ import DeshboardLayout from "../DeshboardLayout/DeshboardLayout";
 import Main from "../Layout/Main";
 import Blog from "../Pages/Blog/Blog";
 import Category from "../Pages/Category/Category";
+import Myorder from "../Pages/Deshboard/Myorder/Myorder";
 import AddProduct from "../Pages/Deshboard/MyProduct/AddProduct";
 import MyProduct from "../Pages/Deshboard/MyProduct/MyProduct";
 import Home from "../Pages/Home/Home";
@@ -29,6 +30,7 @@ import Signup from "../Pages/Signup/Signup";
 
       {path:'/deshboard/addProduct', element:<AddProduct></AddProduct> },
       {path:'/deshboard/myProduct', element:<MyProduct></MyProduct> },
+      {path:'/deshboard/myorder', element:<Myorder></Myorder> },
      ]}
      
 ])
