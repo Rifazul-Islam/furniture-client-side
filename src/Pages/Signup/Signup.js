@@ -3,77 +3,79 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../constext/AuthProvider';
+import useToken from '../../CustomHook/useToken';
 
 const Signup = () => {
-
-    const {register, formState: { errors }, handleSubmit} = useForm()
-     
-    const {createUser,updateUserProfile, setLoding}=useContext(AuthContext)
-       
-    const [userEmail, setUserEmail] = useState('')
-        //  const [token]=useToken(userEmail)
+  const {register, formState: { errors }, handleSubmit} = useForm()
     
-         const navigate = useNavigate()
+      
+  const {createUser,updateUserProfile}=useContext(AuthContext)
+     
+  const [userEmail, setUserEmail] = useState('')
+       const [token]=useToken(userEmail)
+  
+       const navigate = useNavigate()
+
+       if(token){
+         navigate('/')
+       }
+      
 
       
-   
+  const hanlarSinup = (data)=>{
          
-        
-
-        
-    const hanlarSinup = (data)=>{
+      createUser(data.email, data.password)
+      .then((result)=>{
+           const user = result.user;
+           toast.success('Create User Succussfully')
            
-        createUser(data.email, data.password)
-        .then((result)=>{
-             const user = result.user;
-             toast.success('Create User Succussfully')
-         
-             const userProfile = {
-              displayName:data.name
+           const userProfile = {
+            displayName:data.name
 
-              
-             }
-             updateUserProfile(userProfile)
+            
+           }
+           updateUserProfile(userProfile)
 
-             console.log(user)
+           console.log(user)
 
-             
-             
-       // SignUp page Create Jwt Token
+           
+           
+     // SignUp page Create Jwt Token
 
-               setUserEmail(data.email)
-        })
-        .catch((error)=>{
-          console.error(error)
-        })
-             
-      const userInfo ={
-          name:data.name,
-          email:data.email,
-          role : data.select,
-          
-        }
+             setUserEmail(data.email)
+      })
+      .catch((error)=>{
+        console.error(error)
+      })
+           
+    const userInfo ={
+        name:data.name,
+        email:data.email,
+        role : data.select,
         
-         fetch('http://localhost:5000/users',{
-
-          method: 'POST',
-          headers:{
-              'content-type':'application/json'
-          },
-        body:JSON.stringify(userInfo)
-         })
-         .then(res => res.json() )
-         .then(data => {
-             
-            if(data.acknowledged){
-
-                toast.success('user Info database Save')
-
-            }
-             
-         })
-      
       }
+      
+       fetch('http://localhost:5000/users',{
+
+        method: 'POST',
+        headers:{
+            'content-type':'application/json'
+        },
+      body:JSON.stringify(userInfo)
+       })
+       .then(res => res.json() )
+       .then(data => {
+           
+          if(data.acknowledged){
+
+              toast.success('user Info database Save')
+
+          }
+           
+       })
+    
+    }
+
 
 
     return (

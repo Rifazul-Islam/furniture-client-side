@@ -4,90 +4,87 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
 import { toast } from 'react-hot-toast';
 import { AuthContext } from '../../constext/AuthProvider';
+import useToken from '../../CustomHook/useToken';
 const Login = () => {
 
-    const {register, formState: { errors }, handleSubmit} = useForm()
+  const {register, formState: { errors }, handleSubmit} = useForm()
 
-    const [loginUser, setLoginUser]=useState('')
+  const [loginUser, setLoginUser]=useState('')
 
-//    const [token]=useToken(loginUser)
-    const location = useLocation()
-    const navigate = useNavigate()
+ const [token]=useToken(loginUser)
+  const location = useLocation()
+  const navigate = useNavigate()
 
-    const from = location.state?.from?.pathname || '/'
-        
-
-      navigate(from, {replace:true});
-
-  const {userLogin ,userGoogleLogin} = useContext(AuthContext)
-  const handlarLogin = (data)=>{
-
-    userLogin(data.email, data.password)
-    .then((result)=> {
-       const user = result.user;
-       console.log(user)
-       toast.success('User Login Succussfully')
-
-       // Loin page Create Jwt Token
-
-       setLoginUser(data.email)
+  const from = location.state?.from?.pathname || '/'
       
-    })
-     .catch((error)=>{
-        console.error(error)
-     })
+  if(token){
+    navigate(from, {replace:true});
   }
+const {userLogin ,userGoogleLogin} = useContext(AuthContext)
+const handlarLogin = (data)=>{
 
+  userLogin(data.email, data.password)
+  .then((result)=> {
+     const user = result.user;
+     console.log(user)
+     toast.success('User Login Succussfully')
 
-  const handlarGoogleLoing = () =>{
+     // Loin page Create Jwt Token
 
-    userGoogleLogin()
-    .then(result => {
-      const user = result.user;
-      console.log(user)
-        // Google page Create Jwt Token
-      setLoginUser(user?.email)
-      if (user) {
-        const userInfo = {
-            name: user?.displayName,
-            email: user?.email,
-            role: 'buyer'
-        };
-        fetch('http://localhost:5000/users', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(userInfo)
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.acknowledged) {
-                    // setCreateUserEmail(user?.email);
-                    toast.success('Account Create successfull with save user')
-                    navigate(from, {replace:true});
-                
-                  } else {
-                    // setCreateUserEmail(user?.email);
-                    toast.error(data.message)
-                    navigate(from, {replace:true});
-                }
-            })
-            .catch(err => {
-                console.error(err.message);
-            })
-
-    }
-
-    })
-    .catch(error =>{
-          console.error(error)
-    })
-  }
-  
-      
+     setLoginUser(data.email)
     
+  })
+   .catch((error)=>{
+      console.error(error)
+   })
+}
 
+
+const handlarGoogleLoing = () =>{
+
+  userGoogleLogin()
+  .then(result => {
+    const user = result.user;
+    console.log(user)
+      // Google page Create Jwt Token
+    setLoginUser(user?.email)
+    if (user) {
+      const userInfo = {
+          name: user?.displayName,
+          email: user?.email,
+          role: 'buyer'
+      };
+      fetch('http://localhost:5000/users', {
+          method: 'POST',
+          headers: {
+              'content-type': 'application/json'
+          },
+          body: JSON.stringify(userInfo)
+      })
+          .then(res => res.json())
+          .then(data => {
+              if (data.acknowledged) {
+                  // setCreateUserEmail(user?.email);
+                  toast.success('Account Create successfull with save user')
+                  navigate(from, {replace:true});
+              
+                } else {
+                  // setCreateUserEmail(user?.email);
+                  toast.error(data.message)
+                  navigate(from, {replace:true});
+              }
+          })
+          .catch(err => {
+              console.error(err.message);
+          })
+
+  }
+
+  })
+  .catch(error =>{
+        console.error(error)
+  })
+}
 
     return (
         <div className='h-[600px]   flex justify-center items-center'>

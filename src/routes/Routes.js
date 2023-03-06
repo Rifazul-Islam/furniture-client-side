@@ -8,6 +8,8 @@ import AllSeller from "../Pages/Deshboard/AllSeller/AllSeller";
 import Myorder from "../Pages/Deshboard/Myorder/Myorder";
 import AddProduct from "../Pages/Deshboard/MyProduct/AddProduct";
 import MyProduct from "../Pages/Deshboard/MyProduct/MyProduct";
+import Payments from "../Pages/Deshboard/Payments/Payments";
+import Report from "../Pages/Deshboard/Report/Report";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import ErrorCheck from "../Pages/Shared/ErrorCheck/ErrorCheck";
@@ -24,7 +26,7 @@ import Signup from "../Pages/Signup/Signup";
       {path:'/signup', element: <Signup></Signup>},
       {path:'/blog', element: <Blog></Blog>},
       {path:'/category/:id', element:<Category></Category>,
-    //    loader:({params})=> fetch(`http://localhost:5000/categories/${params.id}`)
+      loader:({params})=> fetch(`http://localhost:5000/categories/${params.id}`)
 
     }
 
@@ -35,9 +37,15 @@ import Signup from "../Pages/Signup/Signup";
 
       {path:'/deshboard/addProduct', element:<AddProduct></AddProduct> },
       {path:'/deshboard/myProduct', element:<MyProduct></MyProduct> },
-      {path:'/deshboard/myorder', element:<Myorder></Myorder> },
+      {path:'/deshboard/myOrders', element:<Myorder></Myorder> },
       {path:'/deshboard/allBuyer', element:<AllBuyer></AllBuyer>},
       {path:'/deshboard/allSeller', element:<AllSeller></AllSeller>},
+      {path:'/deshboard/report', element: <Report></Report> },
+      {path:'/deshboard/payments/:id', element: <Payments></Payments>,
+    
+      loader:({params})=> fetch(`http://localhost:5000/bookings/${params.id}`)  
+    
+    },
      ]}
      
 ])

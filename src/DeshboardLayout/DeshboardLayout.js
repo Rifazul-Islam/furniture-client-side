@@ -26,7 +26,7 @@ const DeshboardLayout = () => {
       
       </div> 
     
-       <div className="drawer-side">
+        <div className="drawer-side">
         <label htmlFor="deshboard-drawer" className="drawer-overlay"></label> 
         <ul className="menu p-4 w-80 bg-base-100 text-base-content">
          
@@ -34,7 +34,7 @@ const DeshboardLayout = () => {
              isAdmin && <>
              <li><Link to='/deshboard/allSeller'> All Seller </Link></li> 
             <li><Link to='/deshboard/allBuyer'> All Buyer </Link></li> 
-            <li><Link to='/deshboard/reportedItem'> Reported Items </Link></li> 
+            <li><Link to='/deshboard/report'> Reported Items </Link></li> 
               </>
               
            } 
@@ -45,10 +45,7 @@ const DeshboardLayout = () => {
               <li><Link to='/deshboard/myOrders'> My Orders</Link></li> 
           },
    
-    
-               
-    
-         
+      
                
     {
          

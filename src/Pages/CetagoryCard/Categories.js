@@ -12,7 +12,7 @@ const Categories = ({categorie}) => {
     <h2 className="card-title"> Name : {name} </h2>
     <p> </p>
     <div className="card-actions justify-end ">
-    <Link className="btn btn-outline w-full"  to={`/category/${_id}`}><button className='text-xl'> {category} </button> </Link>
+    <Link className="btn btn-outline w-full"  to={`/category/${_id}`}> {category}  </Link>
     </div>
   </div>
 </div>
