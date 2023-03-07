@@ -3,11 +3,11 @@ import React from 'react';
 const Banner = () => {
     return (
     <div className='mt-2'>
-   <div className="carousel w-full pl-3.5 h-[500px] ">
-  <div id="item1" className="carousel-item mx-96  w-full">
-    <img src="https://www.ikea.com/images/a-slattum-upholstered-bed-and-various-white-nordli-chests-of-8d484dc7644efac6f63d4e9da13cfbe3.jpg" alt='#' className="w-full relative" /> 
+   <div className="carousel w-full h-[500px]">
+  <div id="item1" className="carousel-item  w-full">
+    <img src="https://www.ikea.com/images/a-slattum-upholstered-bed-and-various-white-nordli-chests-of-8d484dc7644efac6f63d4e9da13cfbe3.jpg" alt='#' className="w-full " /> 
     
-    <h1 className="mb-5 mt-52 text-5xl font-bold absolute text-white">Hello </h1>  
+
     
   </div> 
   <div id="item2" className="carousel-item w-full">

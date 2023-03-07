@@ -1,17 +1,29 @@
-import React, { useEffect, useState } from 'react';
-
+import { useQuery } from '@tanstack/react-query';
+import React from 'react';
+import SpennerPage from '../Shared/SpennerPage/SpennerPage';
 import Categories from './Categories';
 
 const Cetagory = () => {
+ 
+  const url = 'http://localhost:5000/categories'
 
-  const [categories, setCategories] = useState([])
-
-   useEffect(()=>{
-
-        fetch('http://localhost:5000/categories') 
-        .then(res => res.json())
-        .then(data => setCategories(data))
+  const {data:categories = [],isLoading } = useQuery({
+        
+       queryKey :['categories',],
+       queryFn: async ()=> {
+        const res = await fetch(url ,{
+            
+        });
+        const data = await res.json() ;
+        return  data ;
+       }
    })
+   if(isLoading){
+        return <SpennerPage></SpennerPage>
+   }
+
+
+
     return (
         <div className='mt-5 mb-7 '>
         <h1 className='text-4xl text-center text-indigo-500'> Choose your Category</h1>

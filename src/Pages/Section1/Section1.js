@@ -2,7 +2,7 @@ import React from 'react';
 import { AiOutlineFilter, AiOutlineHome } from "react-icons/ai";
 import { BsArchive, BsCart} from "react-icons/bs";
 import { BiCookie  } from "react-icons/bi";
-import { IconName, SiC } from "react-icons/si";
+import {  SiC } from "react-icons/si";
 const Section1 = () => {
     return (
         <div className='text-center mt-14 mb-16'>
