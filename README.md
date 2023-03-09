@@ -1,3 +1,18 @@
+# Website Name Furniture resale
+ ## Webwite live and netlify link : (https://furniture-2786d.web.app/) 
+  # Admin Email : rakib@gmail.com
+  # password : 112233
+ #  Website description : 
+  * first create react app instal and react router 
+  * firebase new create new projects and database  mongodb use 
+  * framwork use taiwind and  desy ui
+  * desgin hot Toast and react icon
+  * server site use env file and jwt token   vercel 
+  *  Features : Actually this site is  resale car related system is used.
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

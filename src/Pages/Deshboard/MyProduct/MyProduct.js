@@ -7,7 +7,7 @@ const MyProduct = () => {
       
     useEffect(()=>{
        
-     axios.get('http://localhost:5000/sellerProducts')
+     axios.get('https://furnitures-ten.vercel.app/sellerProducts')
        .then(data => {
             return setProducts(data.data)
        });
@@ -18,7 +18,7 @@ const MyProduct = () => {
         <div>
         <h1 className='text-2xl'> my product  </h1>
 
-   <div className='grid grid-cols-1   lg:grid-cols-2  gap-5' >
+   <div className='grid grid-cols-1   lg:grid-cols-3  gap-5' >
    {
        products.map(product=> <ProductCard 
                  key={product._id}

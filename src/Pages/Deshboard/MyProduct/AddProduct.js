@@ -37,7 +37,7 @@ const AddProduct = () => {
             if(imaData.success){
                 const sellerProducts = {
                     sellerName:data.name,
-                    productName:data.product,
+                    ProductName:data.product,
                     resalePrice : data.resale,
                     originalPrice : data.original,
                     select: data.select,
@@ -54,7 +54,7 @@ const AddProduct = () => {
           
 
 
-            fetch('http://localhost:5000/sellerProducts',{
+            fetch('https://furnitures-ten.vercel.app/sellerProducts',{
     
                method:'POST',
     

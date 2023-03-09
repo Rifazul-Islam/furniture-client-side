@@ -55,7 +55,7 @@ const Signup = () => {
         
       }
       
-       fetch('http://localhost:5000/users',{
+       fetch('https://furnitures-ten.vercel.app/users',{
 
         method: 'POST',
         headers:{

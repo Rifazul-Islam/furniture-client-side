@@ -26,7 +26,7 @@ import Signup from "../Pages/Signup/Signup";
       {path:'/signup', element: <Signup></Signup>},
       {path:'/blog', element: <Blog></Blog>},
       {path:'/category/:id', element:<Category></Category>,
-      loader:({params})=> fetch(`http://localhost:5000/categories/${params.id}`)
+      loader:({params})=> fetch(`https://furnitures-ten.vercel.app/categories/${params.id}`)
 
     }
 
@@ -43,7 +43,7 @@ import Signup from "../Pages/Signup/Signup";
       {path:'/deshboard/report', element: <Report></Report> },
       {path:'/deshboard/payments/:id', element: <Payments></Payments>,
     
-      loader:({params})=> fetch(`http://localhost:5000/bookings/${params.id}`)  
+      loader:({params})=> fetch(`https://furnitures-ten.vercel.app/bookings/${params.id}`)  
     
     },
      ]}

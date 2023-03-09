@@ -50,7 +50,7 @@ const DeshboardLayout = () => {
     {
          
                 isSeller && <> <li><Link to='/deshboard/addProduct' > Add Product</Link></li>
-                       <li><Link to='/deshboard/myProduct' > my Product</Link></li></>
+                 <li><Link to='/deshboard/myProduct' > my Product</Link></li></>
          }
                
         </ul>

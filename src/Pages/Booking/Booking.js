@@ -37,7 +37,7 @@ const Booking = ({productAllData,cancalModal}) => {
       }
 
       console.log(booking)
-      fetch('http://localhost:5000/bookings',{
+      fetch('https://furnitures-ten.vercel.app/bookings',{
 
         method: 'POST',
         headers:{
@@ -64,7 +64,7 @@ const Booking = ({productAllData,cancalModal}) => {
         <div>
         <input type="checkbox" id="booking-modal" className="modal-toggle" />
          <div className="modal">
-        <div className="modal-box relative">
+        <div className="modal-box relative  w-96 ">
        <label htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
        
            <form onSubmit={ handleSubmit} className='grid grid-cols-1 gap-3 mt-5'>

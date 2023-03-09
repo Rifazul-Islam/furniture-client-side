@@ -9,7 +9,7 @@ const AllBuyer = () => {
         queryKey:['buyers'],
         queryFn:async()=>{  
 
-            const res = await fetch('http://localhost:5000/buyers',{
+            const res = await fetch('https://furnitures-ten.vercel.app/buyers',{
 
              
             })
@@ -22,7 +22,7 @@ const AllBuyer = () => {
 
 const buyerDelete=id =>{
 
-    fetch(`http://localhost:5000/buyers/${id}`,{
+    fetch(`https://furnitures-ten.vercel.app/buyers/${id}`,{
         method:'DELETE',
      })
      .then(res => res.json())

@@ -5,7 +5,7 @@ const CategoryCart = ({secondhand,setProductAllData}) => {
     const { img, ProductName,sellerName, resalePrice,originalPrice,postTime, location,years} = secondhand
 
     return (
-        <div className='mb-5 mt-3 grid justify-items-start '>
+        <div className=' my-10  grid justify-items-start '>
         <div className="card card-compact h-[400px] sm:w-96  lg:w-[250px]  bg-base-200 flex justify-between  shadow-xl">
         <figure><img className='mt-9 h-64  sm:w-[500px] lg:w-80 ' src={img} alt="Shoes" /></figure>
      <div className="card-body">
@@ -29,7 +29,7 @@ const CategoryCart = ({secondhand,setProductAllData}) => {
     htmlFor="booking-modal"
        onClick={()=>setProductAllData(secondhand)}
       
-       className="btn ml-3 btn-success btn-sm ">  Booking 
+       className="btn ml-3 btn-success  btn-sm ">  Booking 
        </label> </span>  <span> <HiStar className='ml-5  mt-2 text-2xl  text-yellow-500'> </HiStar></span> 
     <span> <HiStar className='ml-1 mt-2  text-2xl text-yellow-500'> </HiStar> </span>
      <span> <HiStar className='ml-1 mt-2  text-2xl text-yellow-500'></HiStar> </span>

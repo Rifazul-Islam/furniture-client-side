@@ -5,15 +5,13 @@ import Categories from './Categories';
 
 const Cetagory = () => {
  
-  const url = 'http://localhost:5000/categories'
+
 
   const {data:categories = [],isLoading } = useQuery({
         
        queryKey :['categories',],
        queryFn: async ()=> {
-        const res = await fetch(url ,{
-            
-        });
+        const res = await fetch('https://furnitures-ten.vercel.app/categories');
         const data = await res.json() ;
         return  data ;
        }
